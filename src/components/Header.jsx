@@ -27,6 +27,4 @@ const styles = {
     fontWeight: "bold",
   }
 };
-
-
 export default Header;
