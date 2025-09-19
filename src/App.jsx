@@ -11,10 +11,7 @@ function App() {
   const [newTaskDate, setNewTaskDate] = useState("");
   const addTask = () => {
     if (newTaskTitle && newTaskDate) {
-      setTasks([
-        ...tasks,
-        { title: newTaskTitle, dueDate: newTaskDate, completed: false },
-      ]);
+      setTasks([...tasks, { title: newTaskTitle, dueDate: newTaskDate, completed: false }]);
       setNewTaskTitle("");
       setNewTaskDate("");
     }
@@ -24,6 +21,7 @@ function App() {
     updatedTasks[index].completed = !updatedTasks[index].completed;
     setTasks(updatedTasks);
   };
+  const allCompleted = tasks.length > 0 && tasks.every(task => task.completed);
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <Header />
@@ -68,6 +66,12 @@ function App() {
           toggleComplete={() => toggleComplete(index)}
         />
       ))}
+      {/* Motivational message */}
+      {allCompleted && (
+        <h3 style={{ marginTop: "20px", color: "#28a745", textAlign: "center" }}>
+           Keep up the good work! All tasks completed! 
+        </h3>
+      )}
     </div>
   );
 }
