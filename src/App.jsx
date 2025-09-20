@@ -1,6 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import TaskCard from "./components/TaskCard";
+function Spinner() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
+      <svg width="28" height="28" viewBox="0 0 50 50" aria-hidden="true">
+        <circle
+          cx="25"
+          cy="25"
+          r="20"
+          stroke="#7b2cbf"
+          strokeWidth="5"
+          fill="none"
+          strokeLinecap="round"
+          strokeDasharray="31.4 31.4"
+        >
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 25 25"
+            to="360 25 25"
+            dur="1s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </svg>
+      <span style={{ color: "#7b2cbf" }}>Loading daily quote...</span>
+    </div>
+  );
+}
 function App() {
   const [tasks, setTasks] = useState([
     { title: "Read Quran", dueDate: "2025-09-20", completed: false },
@@ -9,6 +37,26 @@ function App() {
   ]);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskDate, setNewTaskDate] = useState("");
+  const [quote, setQuote] = useState("");
+  const [author, setAuthor] = useState("");
+  const [loadingQuote, setLoadingQuote] = useState(true);
+  useEffect(() => {
+    async function fetchQuote() {
+      try {
+        const res = await fetch("https://api.quotable.io/random?tags=wisdom");
+        const data = await res.json();
+        setQuote(data.content || "Stay strong and keep your faith!");
+        setAuthor(data.author || "");
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+        setQuote("Stay strong and keep your faith!");
+        setAuthor("");
+      } finally {
+        setLoadingQuote(false);
+      }
+    }
+    fetchQuote();
+  }, []);
   const addTask = () => {
     if (newTaskTitle && newTaskDate) {
       setTasks([...tasks, { title: newTaskTitle, dueDate: newTaskDate, completed: false }]);
@@ -21,14 +69,23 @@ function App() {
     updatedTasks[index].completed = !updatedTasks[index].completed;
     setTasks(updatedTasks);
   };
-  const allCompleted = tasks.length > 0 && tasks.every(task => task.completed);
+  const allCompleted = tasks.length > 0 && tasks.every((task) => task.completed);
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <Header />
+      <div style={{ textAlign: "center", margin: "18px 0" }}>
+        {loadingQuote ? (
+          <Spinner />
+        ) : (
+          <div>
+            <h2 style={{ color: "#5a189a", fontStyle: "italic", margin: 0 }}>"{quote}"</h2>
+            {author && <p style={{ marginTop: 6, color: "#7b2cbf" }}>— {author}</p>}
+          </div>
+        )}
+      </div>
       <h1 style={{ textAlign: "center", margin: "30px 0", color: "#5a189a" }}>
         Welcome to My Islamic To-Do App
       </h1>
-      {/* New Task Form */}
       <div style={{ marginBottom: "20px" }}>
         <input
           type="text"
@@ -66,7 +123,6 @@ function App() {
           toggleComplete={() => toggleComplete(index)}
         />
       ))}
-      {/* Motivational message */}
       {allCompleted && (
         <h3 style={{ marginTop: "20px", color: "#28a745", textAlign: "center" }}>
            Keep up the good work! All tasks completed! 
@@ -75,4 +131,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

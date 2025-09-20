@@ -2,28 +2,21 @@ function TaskCard({ title, dueDate, completed, toggleComplete }) {
   const cardStyle = {
     border: "1px solid #c77dff",
     borderRadius: "10px",
-    padding: "15px",
+    padding: "12px",
     margin: "10px 0",
-    backgroundColor: completed ? "#d3ffd3" : "#f8f0ff", // green if completed
-    boxShadow: "2px 2px 10px rgba(0,0,0,0.1)",
+    backgroundColor: completed ? "#e6ffe6" : "#f8f0ff",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
   };
-
   const titleStyle = {
-    fontSize: "18px",
-    fontWeight: "bold",
-    marginBottom: "5px",
+    fontSize: "16px",
+    fontWeight: "600",
+    marginBottom: "4px",
     color: "#5a189a",
     textDecoration: completed ? "line-through" : "none",
   };
-
-  const dateStyle = {
-    fontSize: "14px",
-    color: "#7b2cbf",
-  };
-
+  const dateStyle = { fontSize: "13px", color: "#7b2cbf" };
   return (
     <div style={cardStyle}>
       <div>
@@ -33,11 +26,12 @@ function TaskCard({ title, dueDate, completed, toggleComplete }) {
       <button
         onClick={toggleComplete}
         style={{
-          padding: "5px 10px",
+          padding: "6px 10px",
           backgroundColor: completed ? "#7b2cbf" : "#4CAF50",
           color: "white",
           border: "none",
-          borderRadius: "5px",
+          borderRadius: "6px",
+          cursor: "pointer",
         }}
       >
         {completed ? "Undo" : "Complete"}
@@ -45,5 +39,4 @@ function TaskCard({ title, dueDate, completed, toggleComplete }) {
     </div>
   );
 }
-
 export default TaskCard;
