@@ -30,11 +30,19 @@ function Spinner() {
   );
 }
 function App() {
-  const [tasks, setTasks] = useState([
-    { title: "Read Quran", dueDate: "2025-09-20", completed: false },
-    { title: "Pray Fajr on time", dueDate: "2025-09-19", completed: false },
-    { title: "Memorize Surah Al-Fatiha", dueDate: "2025-09-22", completed: false },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks
+      ? JSON.parse(savedTasks)
+      : [
+          { title: "Read Quran", dueDate: "2025-09-20", completed: false },
+          { title: "Pray Fajr on time", dueDate: "2025-09-19", completed: false },
+          { title: "Memorize Surah Al-Fatiha", dueDate: "2025-09-22", completed: false },
+        ];
+  });
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskDate, setNewTaskDate] = useState("");
   const [quote, setQuote] = useState("");
@@ -58,11 +66,10 @@ function App() {
     fetchQuote();
   }, []);
   const addTask = () => {
-    if (newTaskTitle && newTaskDate) {
-      setTasks([...tasks, { title: newTaskTitle, dueDate: newTaskDate, completed: false }]);
-      setNewTaskTitle("");
-      setNewTaskDate("");
-    }
+    if (!newTaskTitle || !newTaskDate) return;
+    setTasks([...tasks, { title: newTaskTitle, dueDate: newTaskDate, completed: false }]);
+    setNewTaskTitle("");
+    setNewTaskDate("");
   };
   const toggleComplete = (index) => {
     const updatedTasks = [...tasks];
@@ -131,5 +138,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
