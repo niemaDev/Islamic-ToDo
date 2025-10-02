@@ -46,20 +46,24 @@ function TasksPage() {
           placeholder="Task Title"
           value={newTaskTitle}
           onChange={(e) => setNewTaskTitle(e.target.value)}
+          aria-label="Task title"
         />
         <input
           type="date"
           value={newTaskDate}
           onChange={(e) => setNewTaskDate(e.target.value)}
+          aria-label="Task due date"
         />
-        <button onClick={addTask}>Add Task</button>
+        <button onClick={addTask} aria-label="Add new task">Add Task</button>
       </div>
 
       {error && <p className="error">{error}</p>}
 
+      {tasks.length === 0 && <p className="no-tasks">No tasks yet. Add your first task above!</p>}
+
       <TaskList tasks={tasks} toggleComplete={toggleComplete} />
 
-      {allComplete && <p className="motivation">🌟 Keep up the good work! 🌟</p>}
+      {allComplete && <p className="motivation"> Keep up the good work! </p>}
     </div>
   );
 }

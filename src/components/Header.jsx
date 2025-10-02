@@ -9,7 +9,6 @@ function Header({ darkMode, setDarkMode }) {
         <NavLink to="/explore" className={({ isActive }) => isActive ? "active" : ""}>Explore</NavLink>
         <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>About</NavLink>
 
-        {/* Dark Mode Toggle */}
         <button
           className="toggle-btn"
           onClick={() => setDarkMode(!darkMode)}
