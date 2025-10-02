@@ -7,15 +7,17 @@ function App() {
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskDate, setNewTaskDate] = useState("");
   const [error, setError] = useState("");
-
+  const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(storedTasks);
   }, []);
-
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+  useEffect(() => {
+    document.body.className = darkMode ? "dark" : "light";
+  }, [darkMode]);
 
   const addTask = () => {
     if (!newTaskTitle || !newTaskDate) {
@@ -42,10 +44,10 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <div className="container">
-        <h1 className="title">Welcome to my Islamic To-Do App</h1>
+        <h1 className="title">Welcome to My Islamic To-Do App</h1>
         <div className="task-form">
           <input
             type="text"
@@ -62,10 +64,9 @@ function App() {
         </div>
 
         {error && <p className="error">{error}</p>}
-
         <TaskList tasks={tasks} toggleComplete={toggleComplete} />
         {allComplete && (
-          <p className="motivation">Keep up the good work! </p>
+          <p className="motivation"> Keep up the good work! </p>
         )}
       </div>
     </div>

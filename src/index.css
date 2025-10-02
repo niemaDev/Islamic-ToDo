@@ -1,16 +1,19 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f0ff; /* light purple */
+body.light {
+  background-color: #f8f0ff;
+  color: #333;
 }
 
+body.dark {
+  background-color: #1e1e2f;
+  color: #eee;
+}
 header {
-  background-color: #7b2cbf; /* deep purple */
+  background-color: #7b2cbf; 
   padding: 10px;
-  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  text-align: center;
 }
 
 header nav a {
@@ -29,16 +32,34 @@ header nav a:hover {
 }
 
 .title {
-  color: #5a189a; /* dark purple */
+  color: #5a189a;
+}
+/* Dark mode title */
+.dark .title {
+  color: #ffd700; /* bright gold/yellow color for contrast */
 }
 
 .task-form {
   margin-bottom: 20px;
 }
 
-.task-form input {
+.task-form input[type="text"],
+.task-form input[type="date"] {
   margin-right: 10px;
   padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.dark .task-form input[type="text"],
+.dark .task-form input[type="date"] {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+.dark .task-form input::placeholder {
+  color: #bbb;
 }
 
 .task-form button {
@@ -54,11 +75,18 @@ header nav a:hover {
   background-color: #5a189a;
 }
 
+.dark .task-form button {
+  background-color: #444;
+}
+
+.dark .task-form button:hover {
+  background-color: #666;
+}
+
 .error {
   color: red;
   margin-top: 5px;
 }
-
 .task-list {
   margin-top: 20px;
 }
@@ -70,12 +98,62 @@ header nav a:hover {
   margin-bottom: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, color 0.3s;
 }
-
+.task-card h3,
+.task-card p {
+  color: #333;
+}
 .task-card.completed {
   background: #e6ffe6;
   text-decoration: line-through;
+  color: #28a745;
 }
+.dark .task-card {
+  background: #2c2c3a;
+  border: 1px solid #555;
+}
+
+.dark .task-card h3,
+.dark .task-card p {
+  color: #eee;
+}
+
+.dark .task-card.completed {
+  color: #a0ffa0;
+  text-decoration: line-through;
+}
+
+button {
+  padding: 6px 12px;
+  background-color: #7b2cbf;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #5a189a;
+}
+
+.dark button {
+  background-color: #444;
+}
+
+.dark button:hover {
+  background-color: #666;
+}
+
+.toggle-btn {
+  margin-left: 20px;
+  background-color: #ffcc00;
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 6px 10px;
+}
+
 
 .motivation {
   color: green;

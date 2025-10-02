@@ -1,13 +1,20 @@
-function Header() {
+function Header({ darkMode, setDarkMode }) {
   return (
-    <nav style={{ backgroundColor: "#c77dff", padding: "10px", borderRadius: 6 }}>
-      <ul style={{ listStyle: "none", display: "flex", gap: 18, margin: 0, padding: 0 }}>
-        <li><a href="#" style={{ textDecoration: "none", color: "#fff", fontWeight: 600 }}>Home</a></li>
-        <li><a href="#" style={{ textDecoration: "none", color: "#fff", fontWeight: 600 }}>Tasks</a></li>
-        <li><a href="#" style={{ textDecoration: "none", color: "#fff", fontWeight: 600 }}>Explore</a></li>
-        <li><a href="#" style={{ textDecoration: "none", color: "#fff", fontWeight: 600 }}>About</a></li>
-      </ul>
-    </nav>
+    <header>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Tasks</a>
+        <a href="#">Explore</a>
+        <a href="#">About</a>
+      </nav>
+      <button
+        className="toggle-btn"
+        onClick={() => setDarkMode(!darkMode)}
+      >
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
+    </header>
   );
 }
+
 export default Header;
