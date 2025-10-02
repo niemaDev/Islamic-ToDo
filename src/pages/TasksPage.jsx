@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import TaskList from "../components/TaskList";
-import QuoteSection from "../components/QuoteSection";
 
 function TasksPage() {
   const [tasks, setTasks] = useState([]);
@@ -19,10 +18,13 @@ function TasksPage() {
 
   const addTask = () => {
     if (!newTaskTitle || !newTaskDate) {
-      setError("⚠️ Please enter both task title and date!");
+      setError(" Please enter both task title and date!");
       return;
     }
-    setTasks([...tasks, { title: newTaskTitle, dueDate: newTaskDate, completed: false }]);
+    setTasks([
+      ...tasks,
+      { title: newTaskTitle, dueDate: newTaskDate, completed: false },
+    ]);
     setNewTaskTitle("");
     setNewTaskDate("");
     setError("");
@@ -34,12 +36,17 @@ function TasksPage() {
     setTasks(updated);
   };
 
+  // 🔴 NEW delete function
+  const deleteTask = (index) => {
+    const updated = [...tasks];
+    updated.splice(index, 1); // remove one at position index
+    setTasks(updated);
+  };
+
   const allComplete = tasks.length > 0 && tasks.every((t) => t.completed);
 
   return (
     <div className="container">
-      <QuoteSection />
-
       <div className="task-form">
         <input
           type="text"
@@ -54,16 +61,21 @@ function TasksPage() {
           onChange={(e) => setNewTaskDate(e.target.value)}
           aria-label="Task due date"
         />
-        <button onClick={addTask} aria-label="Add new task">Add Task</button>
+        <button onClick={addTask} aria-label="Add new task">
+          Add Task
+        </button>
       </div>
 
       {error && <p className="error">{error}</p>}
 
-      {tasks.length === 0 && <p className="no-tasks">No tasks yet. Add your first task above!</p>}
+      {tasks.length === 0 && (
+        <p className="no-tasks">No tasks yet. Add your first task above!</p>
+      )}
 
-      <TaskList tasks={tasks} toggleComplete={toggleComplete} />
+      {/* pass deleteTask to TaskList */}
+      <TaskList tasks={tasks} toggleComplete={toggleComplete} deleteTask={deleteTask} />
 
-      {allComplete && <p className="motivation"> Keep up the good work! </p>}
+      {allComplete && <p className="motivation">MashaAllah, All tasks are done. Keep striving for both dunya & akhirah.</p>}
     </div>
   );
 }

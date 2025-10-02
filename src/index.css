@@ -4,18 +4,15 @@ body {
   background-color: #f8f0ff; 
   color: #111;
 }
-
 .dark {
   background-color: #111;
   color: #fff;
 }
-
 header {
   background-color: #7b2cbf; 
   padding: 10px 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
-
 header nav {
   display: flex;
   justify-content: space-between;
@@ -23,7 +20,6 @@ header nav {
   flex-wrap: wrap;
   gap: 10px;
 }
-
 header nav a {
   color: #fff;
   text-decoration: none;
@@ -31,20 +27,16 @@ header nav a {
   padding: 5px 10px;
   border-radius: 5px;
 }
-
 header nav a:hover {
   background-color: #5a189a;
 }
-
 header nav a.active:not(:first-child) {
   text-decoration: underline;
   color: #ffd700;
 }
-
 .dark header {
   background-color: #5a189a;
 }
-
 .toggle-btn {
   background-color: #ffd700;
   border: none;
@@ -134,18 +126,39 @@ header nav a.active:not(:first-child) {
   text-decoration: line-through;
   opacity: 0.7;
 }
-
-.quote-section {
-  border-left: 4px solid #7b2cbf;
-  padding: 10px 15px;
-  margin-bottom: 15px;
-  background-color: #f0e6ff;
-  font-style: italic;
+:root {
+  --text-color: #111;
+  --card-bg: #f0e6ff;
 }
 
-.dark .quote-section {
-  background-color: #333;
-  border-left-color: #ffd700;
+.dark {
+  --text-color: #ffd700; 
+  --card-bg: #222;     
+}
+
+.quote-section {
+  margin: 20px auto;
+  text-align: center;
+  max-width: 600px;
+  padding: 15px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quote-arabic {
+  font-family: "Amiri", serif;
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  direction: rtl;
+  line-height: 2;
+}
+
+.quote-english {
+  font-size: 1rem;
+  color: var(--text-color);
+  font-style: italic;
 }
 
 .error {
@@ -192,4 +205,19 @@ header nav a.active:not(:first-child) {
   .task-form button {
     flex: 1;
   }
+}
+.title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 10px;
+  direction: rtl; 
+  font-family: "Amiri", serif; 
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  direction: rtl;
+  font-family: "Amiri", serif;
 }
