@@ -183,3 +183,8 @@ button:hover {
 .dark .loading {
   color: #ffd700;
 }
+header nav a.active:not(:first-child) {
+  text-decoration: underline;
+  font-weight: bold;
+  color: #ffd700;
+}
