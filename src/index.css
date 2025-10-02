@@ -160,3 +160,26 @@ button:hover {
   font-weight: bold;
   margin-top: 20px;
 }
+/* Quote Section */
+.quote-section {
+  margin: 20px 0;
+  font-style: italic;
+  text-align: center;
+  color: #5a189a;
+}
+
+.dark .quote-section {
+  color: #ffd700;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.2rem;
+  color: #7b2cbf;
+}
+
+.dark .loading {
+  color: #ffd700;
+}

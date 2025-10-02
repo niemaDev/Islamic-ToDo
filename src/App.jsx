@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import TaskList from "./components/TaskList";
+import QuoteSection from "./components/QuoteSection";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -8,20 +9,23 @@ function App() {
   const [newTaskDate, setNewTaskDate] = useState("");
   const [error, setError] = useState("");
   const [darkMode, setDarkMode] = useState(false);
+
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(storedTasks);
   }, []);
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+
   useEffect(() => {
     document.body.className = darkMode ? "dark" : "light";
   }, [darkMode]);
 
   const addTask = () => {
     if (!newTaskTitle || !newTaskDate) {
-      setError("Please enter both task title and date!");
+      setError(" Please enter both task title and date!");
       return;
     }
 
@@ -48,6 +52,9 @@ function App() {
 
       <div className="container">
         <h1 className="title">Welcome to My Islamic To-Do App</h1>
+
+        <QuoteSection />
+
         <div className="task-form">
           <input
             type="text"
@@ -64,7 +71,9 @@ function App() {
         </div>
 
         {error && <p className="error">{error}</p>}
+
         <TaskList tasks={tasks} toggleComplete={toggleComplete} />
+
         {allComplete && (
           <p className="motivation"> Keep up the good work! </p>
         )}
