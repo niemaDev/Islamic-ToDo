@@ -6,7 +6,7 @@ function Footer() {
       <div className="footer-content">
         <p className="footer-main">🕌 Islamic To-Do App &copy; 2025</p>
         <p className="footer-sub">
-          Built with ❤️ for the Ummah by Niema |{" "}
+          Built with ❤️ for the Ummah |{" "}
           <a
             href="https://github.com/your-username"
             target="_blank"
