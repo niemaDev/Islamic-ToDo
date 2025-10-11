@@ -8,7 +8,7 @@ function IncompletePage() {
       {incompleteTasks.length > 0 ? (
         <TaskList tasks={incompleteTasks} toggleComplete={() => {}} deleteTask={() => {}} />
       ) : (
-        <p>No incomplete tasks. You're doing great!</p>
+        <p>No incomplete tasks.</p>
       )}
     </div>
   );
