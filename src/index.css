@@ -6,7 +6,7 @@ body {
 }
 .dark {
   background-color: #111;
-  color: #fff;
+  color: #6c6b6b;
 }
 header {
   background-color: #7b2cbf; 
@@ -27,12 +27,23 @@ header nav a {
   padding: 5px 10px;
   border-radius: 5px;
 }
+.dark header nav a {
+  color: #c2bcbc;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;}
+
 header nav a:hover {
   background-color: #5a189a;
 }
 header nav a.active:not(:first-child) {
   text-decoration: underline;
-  color: #ffd700;
+  color: #f2d325;
+}
+.dark header nav a.active:not(:first-child) {
+  text-decoration: underline;
+  color: #6f621c;
 }
 .dark header {
   background-color: #5a189a;
@@ -62,7 +73,7 @@ header nav a.active:not(:first-child) {
 }
 
 .dark .title {
-  color: #ffd700;
+  color: #6f621c;
 }
 
 .task-form {
@@ -94,7 +105,7 @@ header nav a.active:not(:first-child) {
 
 .dark .task-form input {
   background-color: #333;
-  color: #ffd700;
+  color: #6f621c;
   border: 1px solid #555;
 }
 
@@ -118,7 +129,7 @@ header nav a.active:not(:first-child) {
 
 .dark .task-card {
   background-color: #222;
-  color: #ffd700;
+  color: #6f621c;
   border: 1px solid #555;
 }
 
@@ -132,7 +143,7 @@ header nav a.active:not(:first-child) {
 }
 
 .dark {
-  --text-color: #ffd700; 
+  --text-color: #6f621c; 
   --card-bg: #222;     
 }
 
@@ -174,7 +185,7 @@ header nav a.active:not(:first-child) {
 }
 
 .dark .no-tasks {
-  color: #ffd700;
+  color: #6f621c;
 }
 
 .motivation {
@@ -185,7 +196,7 @@ header nav a.active:not(:first-child) {
 }
 
 .dark .motivation {
-  color: #ffd700;
+  color: #6f621c;
 }
 
 .loading {
@@ -220,4 +231,59 @@ header nav a.active:not(:first-child) {
   margin-bottom: 20px;
   direction: rtl;
   font-family: "Amiri", serif;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.3s;
+}
+
+.mode-btn:hover {
+  transform: scale(1.2);
+}
+
+.dark {
+  background-color: #1a1a1a;
+  color: #a8a5a5;
+}
+
+.dark header {
+  background-color: #2b2b2b;
+}
+
+.page-center {
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .nav-left {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mode-btn {
+    font-size: 1.2rem;
+  }
 }

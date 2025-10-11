@@ -36,10 +36,9 @@ function TasksPage() {
     setTasks(updated);
   };
 
-  // 🔴 NEW delete function
   const deleteTask = (index) => {
     const updated = [...tasks];
-    updated.splice(index, 1); // remove one at position index
+    updated.splice(index, 1); 
     setTasks(updated);
   };
 
@@ -71,8 +70,6 @@ function TasksPage() {
       {tasks.length === 0 && (
         <p className="no-tasks">No tasks yet. Add your first task above!</p>
       )}
-
-      {/* pass deleteTask to TaskList */}
       <TaskList tasks={tasks} toggleComplete={toggleComplete} deleteTask={deleteTask} />
 
       {allComplete && <p className="motivation">MashaAllah, All tasks are done. Keep striving for both dunya & akhirah.</p>}

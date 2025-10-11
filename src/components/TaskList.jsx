@@ -1,5 +1,4 @@
 import TaskCard from "./TaskCard";
-
 function TaskList({ tasks, toggleComplete, deleteTask }) {
   return (
     <div className="task-list">
@@ -10,7 +9,7 @@ function TaskList({ tasks, toggleComplete, deleteTask }) {
           dueDate={task.dueDate}
           completed={task.completed}
           onToggle={() => toggleComplete(index)}
-          onDelete={() => deleteTask(index)} // 🔴 NEW delete handler
+          onDelete={() => deleteTask(index)} 
         />
       ))}
     </div>

@@ -1,9 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+  import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import TasksPage from "./pages/TasksPage";
 import ExplorePage from "./pages/ExplorePage";
 import AboutPage from "./pages/AboutPage";
+import CompletedPage from "./pages/CompletedPage";
+import IncompletePage from "./pages/IncompletePage";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/tasks" element={<TasksPage />} />
+         <Route path="/completed" element={<CompletedPage />} />
+          <Route path="/incomplete" element={<IncompletePage />} />
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/about" element={<AboutPage />} />
       </Routes>

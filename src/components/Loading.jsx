@@ -1,7 +1,7 @@
 function Loading() {
   return (
     <div className="loading">
-      <p>⏳ Loading...</p>
+      <p> Loading...</p>
     </div>
   );
 }
